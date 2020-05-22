@@ -2,13 +2,13 @@
 using Microsoft.Azure.CognitiveServices.Personalizer.Models;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace PersonalizerExample
 {
     class Program
     {
         private const string ServiceEndpoint = "https://loop.ppe.cognitiveservices.azure.com/"; private const string ApiKey = "";
+        //private const string ServiceEndpoint = "https://localhost:5001"; private const string ApiKey = "865d3fb9d3cc4663807379c66cadeb04";
 
         static void Main(string[] _)
         {
@@ -42,7 +42,7 @@ namespace PersonalizerExample
                 IList<string> excludeActions = new List<string> { "juice" };
 
                 // Generate an ID to associate with the request.
-                string eventId = iteration.ToString();
+                string eventId = iteration.ToString()+"-"+DateTime.UtcNow.Ticks;
 
                 // Rank the actions
                 var request = new RankRequest(actions, currentContext, excludeActions, eventId);
